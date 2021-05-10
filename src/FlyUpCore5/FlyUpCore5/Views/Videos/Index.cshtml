@@ -1,0 +1,24 @@
+﻿@model IList<FlyUpCore5.Models.Video>
+
+@{
+    ViewBag.Title = "Videos";
+}
+
+<div class="well">
+    <div class="container">
+        <div class="row">
+            @foreach (var video in Model)
+            {
+                <div class="col-md-3">
+                    <br />
+                    <h5>@video.Title</h5>
+                    <a href="https://youtu.be/@video.Url" target="_blank">
+                        <img src="/images/@video.CoverImageFileName"
+                             alt="@video.CoverImageFileName"
+                             class="img-fluid" style="border: 5px solid orange;" />
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
