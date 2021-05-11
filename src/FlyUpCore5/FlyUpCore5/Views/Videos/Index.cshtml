@@ -1,17 +1,32 @@
-﻿@model IList<FlyUpCore5.Models.Video>
+﻿@model FlyUpCore5.ViewModels.VideosIndexViewModel
 
 @{
     ViewBag.Title = "Videos";
 }
 
 <div class="well">
+
+    <h2>@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("Index", "Videos", FormMethod.Get))
+    {
+        <div class="form-group form-inline">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.DropDownList("mysearch", (SelectList)Model.activitiesSL, new { @class = "form-control", onchange = "this.form.submit();" })
+                </div>
+            </div>
+        </div>
+    }
+
     <div class="container">
         <div class="row">
-            @foreach (var video in Model)
+            @foreach (var video in Model.videos)
             {
                 <div class="col-md-3">
                     <br />
                     <h5>@video.Title</h5>
+                    <h6>Activity: @video.Activity.Title</h6>
                     <a href="https://youtu.be/@video.Url" target="_blank">
                         <img src="/images/@video.CoverImageFileName"
                              alt="@video.CoverImageFileName"
@@ -21,4 +36,5 @@
             }
         </div>
     </div>
+
 </div>

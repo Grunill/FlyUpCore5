@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FlyUpCore5.Models;
+using System.Linq;
 
 namespace FlyUpCore5.Data
 {
@@ -14,6 +15,21 @@ namespace FlyUpCore5.Data
         {
             var _videos = SeedVideos();
             return _videos;
+        }
+
+        public IList<Video> GetListSearch(string mysearch)
+        {
+            var _videos = SeedVideos().AsQueryable();
+
+            //"1" = "All"
+            if (mysearch != "1")
+            {
+                _videos = _videos
+                    .Where(v => v.Activity.Id.ToString() == mysearch);
+            }
+            //_videos = _videos.Where(v => v.Activity.Title == "Kitesurf");
+
+            return _videos.ToList();
         }
 
         private IList<Video> SeedVideos()
@@ -467,7 +483,7 @@ namespace FlyUpCore5.Data
                 Description = "08-03-2021 JG, JB and AF Touch and Go practice plus bonus JG new years eve snow flight over home. (Camera and Edit Jason Grunill)",
                 //Url = "https://youtu.be/WkujXRObVeM",
                 Url = "WkujXRObVeM",
-                Activity = activityKitesurf,
+                Activity = activityParamotor,
                 ViewCount = 8,
             };
 
@@ -478,7 +494,7 @@ namespace FlyUpCore5.Data
                 Description = "The Chosen Few evening flight. Big thanks to our hosts Rob and Dan. (Camera and Edit Jason Grunill, thanks to Rob for ground footage)",
                 //Url = "https://youtu.be/FArl1GFprQs",
                 Url = "FArl1GFprQs",
-                Activity = activityKitesurf,
+                Activity = activityParamotor,
                 ViewCount = 5,
             };
 
