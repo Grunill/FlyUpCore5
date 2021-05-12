@@ -11,6 +11,13 @@ namespace FlyUpCore5.Data
         {
         }
 
+        public Video Get(int id)
+        {
+            var _videos = SeedVideos();
+            var video = _videos.Where(v => v.Id == id).SingleOrDefault();
+            return video;
+        }
+
         public IList<Video> GetList()
         {
             var _videos = SeedVideos();

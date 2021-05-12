@@ -39,5 +39,11 @@ namespace FlyUpCore5.Controllers
             var viewModel = new VideosIndexViewModel(mysearch, _videosRepository, _activitiesRepository);
             return View(viewModel);
         }
+
+        public ActionResult Detail(int? id)
+        {
+            var video = _videosRepository.Get((int)id);
+            return View(video);
+        }
     }
 }

@@ -25,12 +25,16 @@
             {
                 <div class="col-md-3">
                     <br />
-                    <h5>@video.Title</h5>
+                    <a href="@Url.Action("Detail", new { id = video.Id })" style="color:black">
+                        <h5>@video.Title</h5>
+                    </a>
+
                     <h6>Activity: @video.Activity.Title</h6>
-                    <a href="https://youtu.be/@video.Url" target="_blank">
+
+                    <a href="@Url.Action("Detail", new { id = video.Id })">
                         <img src="/images/@video.CoverImageFileName"
-                             alt="@video.CoverImageFileName"
-                             class="img-fluid" style="border: 5px solid orange;" />
+                                alt="@video.CoverImageFileName"
+                                class="img-fluid" style="border: 5px solid orange;" />
                     </a>
                 </div>
             }

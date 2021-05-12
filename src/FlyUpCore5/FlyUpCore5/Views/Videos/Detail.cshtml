@@ -1,0 +1,38 @@
+﻿@model FlyUpCore5.Models.Video
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<style>
+    .btn {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 65px;
+    }
+</style>
+
+<div class="well">
+    <a href="@Url.Action("Index","Videos", new { mysearch = Model.Activity.Id})" class="btn btn-outline-dark btn-sm" role="button">Back</a>
+    <br />
+    <br />
+    <h6>Video: @Model.Title</h6>
+    <h6>Activity: @Model.Activity.Title</h6>
+    <h6>Description:</h6>
+    <h6>@Model.Description</h6>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <a href="https://youtu.be/@Model.Url" target="_blank">
+                <img src="/Images/@Model.CoverImageFileName"
+                    alt="@Model.CoverImageFileName"
+                    class="img-fluid" style="border:5px solid orange;" />
+            </a>
+            <h6>Click photo to watch video in YouTube.</h6>
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+
+
+</div>
