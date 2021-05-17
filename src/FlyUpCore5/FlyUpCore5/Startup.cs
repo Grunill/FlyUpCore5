@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FlyUpCore5.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,14 @@ namespace FlyUpCore5
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //JG Manually added to register MyContext to use options.UseMySQL (MySql flyupuk_db)
+            //Requires NuGet MySql.Data.EntityFrameworkCore
+            //services.AddDbContext<MyContext>(options => options.UseMySQL(Configuration.GetConnectionString("MyContext")));
+
+            //JG Manually added to register MyContext to use options.UseSqlite (Local MariaDb x.db) 
+            //Requires NuGet MySql.Data.EntityFrameworkCore
+            services.AddDbContext<MyContext>(options => options.UseSqlite(Configuration.GetConnectionString("MyContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
