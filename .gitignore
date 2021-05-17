@@ -6,6 +6,10 @@
 # Mac files added by JG
 .DS_Store
 
+# Temp db files added by JG
+*.db-shm
+*.db-wal
+
 # User-specific files
 *.rsuser
 *.suo

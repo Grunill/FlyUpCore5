@@ -6,6 +6,7 @@ using FlyUpCore5.Data;
 using FlyUpCore5.Models;
 using FlyUpCore5.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,19 +14,11 @@ namespace FlyUpCore5.Controllers
 {
     public class VideosController : Controller
     {
-        private VideosRepository _videosRepository = null;
-        private ActivitiesRepository _activitiesRepository = null;
+        private readonly MyContext _context;
 
-        public VideosController()
+        public VideosController(MyContext context)
         {
-            _videosRepository = new VideosRepository();
-            _activitiesRepository = new ActivitiesRepository();
-        }
-
-        public IActionResult Index_ReturnModelExample()
-        {
-            IList<Video> videos = _videosRepository.GetList();
-            return View(videos);
+            _context = context;
         }
 
         public IActionResult Index(string mysearch)
@@ -36,13 +29,16 @@ namespace FlyUpCore5.Controllers
                 mysearch = "1";
             }
 
-            var viewModel = new VideosIndexViewModel(mysearch, _videosRepository, _activitiesRepository);
+            //var viewModel = new VideosIndexViewModel(mysearch, _videosRepository, _activitiesRepository);
+            var viewModel = new VideosIndexViewModel(mysearch, _context);
             return View(viewModel);
         }
 
         public ActionResult Detail(int? id)
         {
-            var video = _videosRepository.Get((int)id);
+            Video video = _context.Video.Include(v => v.Activity).FirstOrDefault(v => v.Id == id);
+
+            //var video = _videosRepository.Get((int)id);
             return View(video);
         }
     }
