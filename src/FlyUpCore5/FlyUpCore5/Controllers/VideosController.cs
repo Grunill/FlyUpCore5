@@ -90,5 +90,20 @@ namespace FlyUpCore5.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Delete(int? id)
+        {
+            var video = _context.Video.Include(v => v.Activity).FirstOrDefault(v => v.Id == id);
+            return View(video);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var video = _context.Video.Find(id);
+            _context.Video.Remove(video);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

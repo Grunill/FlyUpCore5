@@ -1,0 +1,37 @@
+﻿@model FlyUpCore5.Models.Video
+
+@{
+    ViewBag.Title = "Delete Video";
+}
+
+<style>
+    .btn {
+        margin-bottom: 5px;
+        width: 65px;
+    }
+</style>
+
+<div class="well">
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="alert alert-danger">
+        Are you sure you want to delete the video @Model.Title?
+    </div>
+
+    <br />
+    <br />
+
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pad-top">
+                    <button type="submit" class="btn btn-outline-dark btn-sm">Yes</button>
+                    <a href="@Url.Action("Detail", new { id = Model.Id})" class="btn btn-outline-dark btn-sm" role="button">No</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

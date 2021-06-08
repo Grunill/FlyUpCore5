@@ -26,8 +26,8 @@
         <div class="col-md-4 text-center">
             <a href="https://youtu.be/@Model.Url" target="_blank">
                 <img src="/Images/@Model.CoverImageFileName"
-                    alt="@Model.CoverImageFileName"
-                    class="img-fluid" style="border:5px solid orange;" />
+                     alt="@Model.CoverImageFileName"
+                     class="img-fluid" style="border:5px solid orange;" />
             </a>
             <h6>Click photo to watch video in YouTube.</h6>
         </div>
@@ -35,5 +35,6 @@
     </div>
 
     <a href="@Url.Action("Edit","Videos", new { id = Model.Id})" class="btn btn-outline-dark btn-sm" role="button">Edit</a>
+    <a href="@Url.Action("Delete","Videos", new { id = Model.Id})" class="btn btn-outline-dark btn-sm" role="button">Delete</a>
 
 </div>
