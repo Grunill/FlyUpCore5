@@ -41,5 +41,34 @@ namespace FlyUpCore5.Controllers
             //var video = _videosRepository.Get((int)id);
             return View(video);
         }
+
+        public ActionResult Edit(int? id)
+        {
+            Video video = _context.Video.Include(v => v.Activity).FirstOrDefault(v => v.Id == id);
+
+            var viewModel = new VideosEditViewModel(_context)
+            {
+                Video = video
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(VideosEditViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var video = viewModel.Video;
+                _context.Update(video);
+                _context.SaveChanges();
+
+                return RedirectToAction("Detail", new { id = video.Id });
+            }
+
+            return View(viewModel);
+        }
+
+
     }
 }

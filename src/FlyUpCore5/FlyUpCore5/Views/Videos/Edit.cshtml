@@ -1,0 +1,66 @@
+﻿@model FlyUpCore5.ViewModels.VideosEditViewModel
+
+@{
+    ViewBag.Title = "Edit Video";
+}
+
+<style>
+    .btn {
+        margin-bottom: 5px;
+        width: 65px;
+    }
+</style>
+
+<div class="well">
+
+    <h2>@ViewBag.Title</h2>
+    <br />
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Video.ActivityId, new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.Video.ActivityId,
+                    Model.activitiesSL, "", new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Video.Title, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Video.Title, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Video.Url, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Video.Url, new { @class = "form-control" })
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Video.Description, new { @class = "control-label" })
+                    @Html.TextAreaFor(m => m.Video.Description, 14, 20, new { @class = "form-control" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pad-top">
+                    <a href="@Url.Action("Detail", new { id = Model.Id})" class="btn btn-outline-dark btn-sm" role="button">Cancel</a>
+                    <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
