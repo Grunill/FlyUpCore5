@@ -69,6 +69,26 @@ namespace FlyUpCore5.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Create()
+        {
+            var viewModel = new VideosCreateViewModel(_context);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(VideosCreateViewModel viewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var video = viewModel.Video;
+                _context.Add(video);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(viewModel);
+        }
 
     }
 }
