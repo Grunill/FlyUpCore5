@@ -15,7 +15,7 @@
 
     <h2>@ViewBag.Title</h2>
 
-    <a href="@Url.Action("Create")" class="btn btn-outline-dark btn-sm" role="button">Add</a>
+    <a href="@Url.Action("Create")" class="btn btn-outline-dark btn-sm" role="button" style="display:none">Add</a>
 
     @using (Html.BeginForm("Index", "Videos", FormMethod.Get))
     {
