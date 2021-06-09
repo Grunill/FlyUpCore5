@@ -28,7 +28,7 @@ namespace FlyUpCore5.Models
 
                 //No videos exist so add Activity list and Video List
                 //Note: The activity is auto added to the Activity table when the video is added
-                //As no videos added with "All" activity and "Windsurf" activity these are created below
+                //As no videos added with "All" activity this is created below
                 //"Kitesurf" etc will get added when Kitesurf video added so commented out or it will try
                 //to add twice and error.
 
@@ -38,7 +38,7 @@ namespace FlyUpCore5.Models
                         Id = 1,
                         Title = "All",
                         Description = "All Description",
-                    },
+                    }
 
                     //new Activity
                     //{
@@ -103,12 +103,12 @@ namespace FlyUpCore5.Models
                     //    Description = "Sailing Description",
                     //},
 
-                    new Activity
-                    {
-                        Id = 11,
-                        Title = "Windsurf",
-                        Description = "Windsurf Description",
-                    }
+                    //new Activity
+                    //{
+                    //    Id = 11,
+                    //    Title = "Windsurf",
+                    //    Description = "Windsurf Description",
+                    //}
                 );
 
                 //Temp variables used to populate Video Activity
@@ -574,7 +574,30 @@ namespace FlyUpCore5.Models
                         Url = "FArl1GFprQs",
                         Activity = activityParamotor,
                         ViewCount = 5,
+                    },
+
+                    new Video
+                    {
+                        Id = 42,
+                        Title = "Windsurf 1988",
+                        Description = "The only surviving footage of me Windsurfing from over 30 years ago! Image stabilization was rubbish back then. (Edit Jason Grunill)",
+                        //Url = "https://youtu.be/PuesEMvFrx4",
+                        Url = "PuesEMvFrx4",
+                        Activity = activityWindsurf,
+                        ViewCount = 1,
+                    },
+
+                    new Video
+                    {
+                        Id = 43,
+                        Title = "Blithfield Bumps",
+                        Description = "22-04-2021 Aston Marina to Blithfield Reservoir. (Camera and Edit Jason Grunill and AF)",
+                        //Url = "https://youtu.be/dQNN5bmq-u4",
+                        Url = "dQNN5bmq-u4",
+                        Activity = activityParamotor,
+                        ViewCount = 1,
                     }
+
                 );
 
                 context.SaveChanges();
