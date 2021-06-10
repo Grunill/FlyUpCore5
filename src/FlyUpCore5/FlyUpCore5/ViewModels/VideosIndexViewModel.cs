@@ -23,12 +23,14 @@ namespace FlyUpCore5.ViewModels
             {
                 videos = _context.Video
                 .Where(videos => videos.ActivityId == Convert.ToInt32(mysearch))
-                .Include(videos => videos.Activity)
+                .OrderByDescending(videos => videos.ViewCount)
+                .Include(videos => videos.Activity)                
                 .ToList();
             }
             else
             {
                 videos = _context.Video
+                .OrderByDescending(videos => videos.ViewCount)
                 .Include(videos => videos.Activity)
                 .ToList();
             }
