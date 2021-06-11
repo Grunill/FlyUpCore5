@@ -13,37 +13,34 @@
 
 <div class="well">
 
-    <h2>@ViewBag.Title</h2>
-
     <a href="@Url.Action("Create")" class="btn btn-outline-dark btn-sm" role="button" style="display:none">Add</a>
 
-    @using (Html.BeginForm("Index", "Videos", FormMethod.Get))
-    {
-        <div class="form-group form-inline">
-            <div class="row">
-                <div class="col-md-12">
-                    @Html.DropDownList("mysearch", (SelectList)Model.activitiesSL, new { @class = "form-control", onchange = "this.form.submit();" })
-                </div>
+    <div class="container">
+        @using (Html.BeginForm("Index", "Videos", FormMethod.Get))
+        {
+            <div class="form-group form-inline">
+                <label for="mysearch" class="font-weight-bold mr-sm-2">Videos:</label>
+                @Html.DropDownList("mysearch", (SelectList)Model.activitiesSL, new { @class = "form-control", onchange = "this.form.submit();" })
             </div>
-        </div>
-    }
+        }
+    </div>
 
     <div class="container">
         <div class="row">
             @foreach (var video in Model.videos)
             {
-                <div class="col-md-3">
+                <div class="col-sm-4 col-md-4">
                     <br />
                     <a href="@Url.Action("Detail", new { id = video.Id })" style="color:black">
-                        <h5>@video.Title</h5>
+                        <h6>@video.Title</h6>
                     </a>
 
                     <h6>Activity: @video.Activity.Title</h6>
 
                     <a href="@Url.Action("Detail", new { id = video.Id })">
                         <img src="/images/@video.CoverImageFileName"
-                             alt="@video.CoverImageFileName"
-                             class="img-fluid" style="border: 5px solid orange;" />
+                                alt="@video.CoverImageFileName"
+                                class="img-fluid" style="border: 5px solid orange;" />
                     </a>
                 </div>
             }
@@ -51,3 +48,4 @@
     </div>
 
 </div>
+<br />
