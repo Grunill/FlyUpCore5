@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FlyUpCore5
 {
@@ -63,6 +64,8 @@ namespace FlyUpCore5
                 // Configure the scope
                 options.Scope.Clear();
                 options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("email");
 
                 // Set the callback path, so Auth0 will call back to http://localhost:3000/callback
                 // Also ensure that you have added the URL as an Allowed Callback URL in your Auth0 dashboard
@@ -70,6 +73,13 @@ namespace FlyUpCore5
 
                 // Configure the Claims Issuer to be Auth0
                 options.ClaimsIssuer = "Auth0";
+
+                // Set the correct name claim type
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = "https://schemas.quickstarts.com/roles"
+                };
 
                 options.Events = new OpenIdConnectEvents
                 {

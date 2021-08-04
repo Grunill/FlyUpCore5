@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using FlyUpCore5.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +33,16 @@ namespace FlyUpCore5.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
+        [Authorize]
+        public IActionResult Profile()
+        {
+            return View(new UserProfileViewModel()
+            {
+                Name = User.Identity.Name,
+                EmailAddress = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
+                ProfileImage = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value
+            });
+        }
 
         // GET: /<controller>/
         //public IActionResult Index()
