@@ -28,6 +28,16 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a id="qsLogoutBtn" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a id="qsLoginBtn" asp-controller="Account" asp-action="Login">Login</a></li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
