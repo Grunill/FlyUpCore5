@@ -27,13 +27,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Claims">Claims</a>
+                            </li>
+                        }
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-controller="Account" asp-action="Profile">Hello @User.Identity.Name!</a>
-                            </li>
+                            </li>                            
                             <li class="nav-item">
                                 <a class="nav-link text-light" id="qsLogoutBtn" asp-controller="Account" asp-action="Logout">Logout</a>
                             </li>

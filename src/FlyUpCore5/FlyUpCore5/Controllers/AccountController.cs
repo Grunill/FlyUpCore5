@@ -44,10 +44,16 @@ namespace FlyUpCore5.Controllers
             });
         }
 
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        [Authorize]
+        public IActionResult Claims()
+        {
+            return View();
+        }
+
+        public IActionResult AccessDenied()
+        {
+            //The AuthO service calls AccessDenied() if you try to access an Authorized resource with no/wrong role 
+            return View();
+        }
     }
 }
